@@ -7,14 +7,42 @@ class LinkedList:
     def __init__(self) -> None:
         self.head = None
 
-    def insert(self, data: any) -> None:
+    def insert(self, data: any, at: int = None) -> None:
         """Insert an element at the beginning of a LinkedList"""
+        # If index is provided
+        if at:
+            index = at
+
+            if index < 0 or index >= len(self):
+                raise IndexError("LinkedList index out of range")
+            
+            elif index == 0:
+                node = Node(data, self.head)
+                self.head = node
+                return
+            
+            else:
+                count = 0
+
+                cursor = self.head
+                while cursor:
+                    if count == index - 1:
+                        node = Node(data, next=cursor.next)
+                        cursor.next = node
+                        break
+
+                    cursor = cursor.next
+                    count += 1
+                return
+
+        # If data is iterable
         if type(data) in [list, tuple, set]:
             for item in data:
                 node = Node(item, self.head)
                 self.head = node
             return
 
+        # If data is not iterable
         node = Node(data, self.head)
         self.head = node
 
@@ -31,7 +59,7 @@ class LinkedList:
     def remove(self, index: int) -> None:
         """Removes a Node at the given index from a LinkedList object"""
         if index < 0 or index >= len(self):
-            raise IndexError(("LinkedList index out of range"))
+            raise IndexError("LinkedList index out of range")
 
         if index == 0:
             self.head = self.head.next
@@ -87,5 +115,9 @@ if __name__ == "__main__":
     llist.insert([3, 4, 5])
     print(llist)
     print(len(llist))
-    llist.remove(11)
+    llist.insert("Abdullah", at=3)
+    print(llist)
+    llist.insert("Umar", at=2)
+    print(llist)
+    llist.push("Ali")
     print(llist)
