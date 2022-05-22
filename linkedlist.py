@@ -44,7 +44,7 @@ class LinkedList:
     def __str__(self) -> None:
         """Print a LinkedList object."""
         if not self.head:
-            return "An empty Linked List."
+            return "->"
 
         cursor = self.head
         ll_str = ""
