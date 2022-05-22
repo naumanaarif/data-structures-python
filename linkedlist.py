@@ -90,14 +90,14 @@ class LinkedList:
     def __str__(self) -> None:
         """Print a LinkedList object."""
         if not self.head:
-            return "->"
+            return "[ > ]"
 
         cursor = self.head
-        ll_str = ""
+        ll_str = "[ "
         while cursor:
-            ll_str += str(cursor.data) + " -> "
+            ll_str += str(cursor.data) + " > "
             cursor = cursor.next
-        return ll_str
+        return ll_str + "]"
 
     @classmethod
     def to_LinkedList(cls, seq: list):
@@ -109,6 +109,7 @@ class LinkedList:
 
 if __name__ == "__main__":
     llist = LinkedList()
+    print(llist)
     llist.insert(1)
     llist.insert(2)
     llist.push(0)
