@@ -35,13 +35,24 @@ class LinkedList:
             cursor = cursor.next
         return ll_str
 
+    @classmethod
+    def to_LinkedList(cls, seq: list):
+        llist = LinkedList()
+        for data in seq:
+            llist.push(data)
+        return llist
+
 
 if __name__ == "__main__":
-    llist = LinkedList()
-    print(llist)
-    llist.insert(3)
-    llist.insert(2)
-    llist.insert(1)
-    print(llist)
-    llist.push(4)
-    print(llist)
+    # llist = LinkedList()
+    # print(llist)
+    # llist.insert(3)
+    # llist.insert(2)
+    # llist.insert(1)
+    # print(llist)
+    # llist.push(4)
+    # print(llist)
+    list1 = [21, 22, 23]
+    print(list1)
+    llist1 = LinkedList.to_LinkedList(list1)
+    print(llist1)
