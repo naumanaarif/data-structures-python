@@ -28,6 +28,19 @@ class LinkedList:
             cursor = cursor.next
         cursor.next = Node(data)
 
+    def __len__(self) -> int:
+        """Returns the length (number of items) of a LinkedList object"""
+        len = 0
+
+        if not self.head:
+            return len
+
+        cursor = self.head
+        while cursor.next:
+            cursor = cursor.next
+            len += 1
+        return len + 1
+
     def __str__(self) -> None:
         """Print a LinkedList object."""
         if not self.head:
@@ -53,9 +66,7 @@ if __name__ == "__main__":
     print(llist)
     llist.insert(1)
     llist.insert(2)
-    llist.insert(3)
+    llist.push(0)
+    llist.insert([3, 4, 5])
     print(llist)
-    # llist.push(4)
-    # print(llist)
-    llist.insert([4, 5, 6])
-    print(llist)
+    print(len(llist))
