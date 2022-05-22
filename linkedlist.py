@@ -28,6 +28,24 @@ class LinkedList:
             cursor = cursor.next
         cursor.next = Node(data)
 
+    def remove(self, index: int) -> None:
+        """Removes a Node at the given index from a LinkedList object"""
+        if index < 0 or index >= len(self):
+            raise IndexError(("LinkedList index out of range"))
+
+        if index == 0:
+            self.head = self.head.next
+            return
+
+        count = 0
+        cursor = self.head
+        while cursor:
+            if count == index - 1:
+                cursor.next = cursor.next.next
+                break
+            cursor = cursor.next
+            count += 1
+
     def __len__(self) -> int:
         """Returns the length (number of items) of a LinkedList object"""
         len = 0
@@ -63,10 +81,11 @@ class LinkedList:
 
 if __name__ == "__main__":
     llist = LinkedList()
-    print(llist)
     llist.insert(1)
     llist.insert(2)
     llist.push(0)
     llist.insert([3, 4, 5])
     print(llist)
     print(len(llist))
+    llist.remove(11)
+    print(llist)
