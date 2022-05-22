@@ -1,2 +1,2 @@
-# data-structures-python
+# Data Structures
 Implementing Data Structures in Python
