@@ -9,6 +9,12 @@ class LinkedList:
 
     def insert(self, data: any) -> None:
         """Insert an element at the beginning of a LinkedList"""
+        if type(data) in [list, tuple, set]:
+            for item in data:
+                node = Node(item, self.head)
+                self.head = node
+            return
+
         node = Node(data, self.head)
         self.head = node
 
@@ -18,7 +24,6 @@ class LinkedList:
             self.head = Node(data)
             return
         cursor = self.head
-        
         while cursor.next:
             cursor = cursor.next
         cursor.next = Node(data)
@@ -44,15 +49,13 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    # llist = LinkedList()
-    # print(llist)
-    # llist.insert(3)
-    # llist.insert(2)
-    # llist.insert(1)
-    # print(llist)
+    llist = LinkedList()
+    print(llist)
+    llist.insert(1)
+    llist.insert(2)
+    llist.insert(3)
+    print(llist)
     # llist.push(4)
     # print(llist)
-    list1 = [21, 22, 23]
-    print(list1)
-    llist1 = LinkedList.to_LinkedList(list1)
-    print(llist1)
+    llist.insert([4, 5, 6])
+    print(llist)
