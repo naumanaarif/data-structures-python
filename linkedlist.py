@@ -167,9 +167,12 @@ class LinkedList:
 
     def __add__(self, other):
         x, y = self, other
+        llist = LinkedList()
+        for a in x:
+            llist.append(a)
         for a in y:
-            x.append(a)
-        return x
+            llist.append(a)
+        return llist
 
     @classmethod
     def convert(cls, seq: list | tuple | set):
@@ -194,6 +197,10 @@ if __name__ == "__main__":
     # print("Done!")
     # print(f"Time Taken: {time} second(s).\n")
 
-    print(llist1, "+", llist2)
     llist = llist1 + llist2
+    print(llist1, "+", llist2)
     print(llist)
+    print(llist[0])
+
+    # a = []
+    # print(a[0])
