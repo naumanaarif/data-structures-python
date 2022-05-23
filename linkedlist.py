@@ -1,3 +1,6 @@
+from multiprocessing.sharedctypes import Value
+
+
 class Node:
     """Represents a node of a Singly Linked List"""
 
@@ -12,7 +15,9 @@ class LinkedList:
         self.head = None
 
     def insert(self, data: any, at: int = None) -> None:
-        """Insert an element at the beginning of a LinkedList"""
+        """Insert element(s) at the beginning of a LinkedList
+        
+        Supported Datatypes: int, float, bool, str, list, tuple, set"""
         # If index is provided
         if at:
             index = at
@@ -50,8 +55,8 @@ class LinkedList:
         node = Node(data, self.head)
         self.head = node
 
-    def push(self, data: any) -> None:
-        """Push an element at the end of a LinkedList"""
+    def append(self, data: any) -> None:
+        """Adds an element at the end of the LinkedList"""
         if not self.head:
             self.head = Node(data)
             return
@@ -61,7 +66,7 @@ class LinkedList:
         cursor.next = Node(data)
 
     def pop(self, index: int) -> None:
-        """Removes a Node at the specified position from a LinkedList"""
+        """Removes the Node at the specified position"""
         if index < 0 or index >= len(self):
             raise IndexError("LinkedList index out of range")
 
@@ -77,6 +82,42 @@ class LinkedList:
                 break
             cursor = cursor.next
             count += 1
+
+    def remove(self, value: any) -> None:
+        """Removes the first Node with the specified value"""
+        if not len(self):
+            raise ValueError("cannot remove from an empty LinkedList")
+        
+        if len(self) == 1 and self.head.data == value:
+            self.head = None
+            return
+        
+        if len(self) > 1:
+            index = 0
+            cursor = self.head
+            while cursor.next:
+                # If value is found at the beginning
+                if cursor.data == value:
+                    self.head = cursor.next
+                    return
+
+                # If value is found
+                if cursor.next.data == value:
+                    
+                    # If value is at the end
+                    if index == len(self) - 1:
+                        self.pop(index)
+                        return
+                    
+                    # If value is somewhere in between
+                    cursor.next = cursor.next.next
+                    return
+                
+                cursor = cursor.next
+                index += 1
+            
+            # If value not found
+            raise ValueError("value not found in the LinkedList")
 
     def __len__(self) -> int:
         """Returns the length (number of items) of a LinkedList object"""
@@ -114,15 +155,9 @@ class LinkedList:
 if __name__ == "__main__":
     llist = LinkedList()
     print(llist)
-    llist.insert(1)
-    llist.insert(2)
-    llist.push(0)
-    llist.insert([3, 4, 5])
+    name = ['A','B','D','U','L','L','A','H']
+    llist.insert(name[::-1])
     print(llist)
-    print(len(llist))
-    llist.insert("Abdullah", at=3)
-    print(llist)
-    llist.insert("Umar", at=2)
-    print(llist)
-    llist.push("Ali")
+    for letter in name:
+        llist.remove(letter)
     print(llist)
