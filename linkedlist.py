@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Node:
     """Represents a Node of a Singly Linked List"""
 
@@ -144,8 +147,6 @@ class LinkedList:
             cursor = cursor.next
         return ll_str + "]"
 
-# TODO: Add support for iteration
-
     def __iter__(self):
         return self
 
@@ -173,8 +174,15 @@ class LinkedList:
 
 
 if __name__ == "__main__":
+    N = 1_000_000
     llist = LinkedList()
-    print(llist)
-    for i in range(1, 11):
-        llist.append(i)
-    print(llist)
+    print(f"Inserting {N} nodes...")
+
+    ti = datetime.now().second
+    for i in range(N):
+        llist.insert(i)
+    tf = datetime.now().second
+    time = tf - ti
+
+    print("Done!")
+    print(f"Time Taken: {time} second(s).\n")
