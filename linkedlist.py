@@ -165,24 +165,35 @@ class LinkedList:
         self.n += 1
         return cursor.data
 
+    def __add__(self, other):
+        x, y = self, other
+        for a in y:
+            x.append(a)
+        return x
+
     @classmethod
-    def to_LinkedList(cls, seq: list):
+    def convert(cls, seq: list | tuple | set):
+        """Converts a sequence (list, tuple or set) into a LinkedList"""
         llist = LinkedList()
         for data in seq:
-            llist.push(data)
+            llist.insert(data)
         return llist
 
 
 if __name__ == "__main__":
     N = 1_000_000
-    llist = LinkedList()
-    print(f"Inserting {N} nodes...")
+    llist1 = LinkedList.convert([1, 3, 5])
+    llist2 = LinkedList.convert([2, 4, 6])
 
-    ti = datetime.now().second
-    for i in range(N):
-        llist.insert(i)
-    tf = datetime.now().second
-    time = tf - ti
+    # print(f"Inserting {N} nodes...")
+    # ti = datetime.now().second
+    # for i in range(N):
+    #     llist.insert(i)
+    # tf = datetime.now().second
+    # time = tf - ti
+    # print("Done!")
+    # print(f"Time Taken: {time} second(s).\n")
 
-    print("Done!")
-    print(f"Time Taken: {time} second(s).\n")
+    print(llist1, "+", llist2)
+    llist = llist1 + llist2
+    print(llist)
