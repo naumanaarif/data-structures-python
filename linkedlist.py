@@ -122,6 +122,26 @@ class LinkedList:
         # If value not found in the LinkedList
         raise ValueError("value not found in the LinkedList")
 
+    def __setitem__(self, index, value):
+        if index < 0 or index >= len(self):
+            raise IndexError("index out of range")
+
+        self.insert(value, at=index)
+        ...
+
+    def __getitem__(self, index):
+        if index < 0 or index >= len(self):
+            raise IndexError("index out of range")
+
+        count = 0
+        cursor = self.head
+        for _ in range(index + 1):
+            if index == count:
+                return cursor.data
+
+            cursor = cursor.next
+            count += 1
+
     def __len__(self) -> int:
         """Returns the length (number of items) of a LinkedList object"""
         len = 0
@@ -197,10 +217,8 @@ if __name__ == "__main__":
     # print("Done!")
     # print(f"Time Taken: {time} second(s).\n")
 
-    llist = llist1 + llist2
-    print(llist1, "+", llist2)
-    print(llist)
+    llist = LinkedList()
+    # print(llist1, "+", llist2)
+    # print(llist)
+    # print(llist[0])
     print(llist[0])
-
-    # a = []
-    # print(a[0])
