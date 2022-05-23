@@ -1,5 +1,5 @@
 class Node:
-    """Represents a node of the Singly Linked List"""
+    """Represents a node of a Singly Linked List"""
 
     def __init__(self, data=None, next=None) -> None:
         self.data = data
@@ -60,8 +60,8 @@ class LinkedList:
             cursor = cursor.next
         cursor.next = Node(data)
 
-    def remove(self, index: int, value=None) -> None:
-        """Removes a Node at the given index from a LinkedList object"""
+    def pop(self, index: int) -> None:
+        """Removes a Node at the specified position from a LinkedList"""
         if index < 0 or index >= len(self):
             raise IndexError("LinkedList index out of range")
 
