@@ -11,6 +11,7 @@ class LinkedList:
 
     def __init__(self) -> None:
         self.head = None
+        self.n = 0
 
     def insert(self, data: any, at: int = None) -> None:
         """Insert element(s) at the beginning of a LinkedList
@@ -143,6 +144,26 @@ class LinkedList:
             cursor = cursor.next
         return ll_str + "]"
 
+# TODO: Add support for iteration
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.n == len(self):
+            self.n = 0
+            raise StopIteration
+        
+        if not self.n:
+            self.n += 1
+            return self.head.data
+
+        cursor = self.head
+        for _ in range(self.n):
+            cursor = cursor.next
+        self.n += 1
+        return cursor.data
+
     @classmethod
     def to_LinkedList(cls, seq: list):
         llist = LinkedList()
@@ -154,9 +175,6 @@ class LinkedList:
 if __name__ == "__main__":
     llist = LinkedList()
     print(llist)
-    name = ['A', 'B', 'D', 'U', 'L', 'L', 'A', 'H']
-    llist.insert(name[::-1])
-    print(llist)
-    for letter in name:
-        llist.remove(letter)
+    for i in range(1, 11):
+        llist.append(i)
     print(llist)
