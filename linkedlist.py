@@ -1,12 +1,10 @@
-from multiprocessing.sharedctypes import Value
-
-
 class Node:
     """Represents a node of a Singly Linked List"""
 
     def __init__(self, data=None, next=None) -> None:
         self.data = data
         self.next = next
+
 
 class LinkedList:
     """A Singly Linked List data structure"""
@@ -16,7 +14,7 @@ class LinkedList:
 
     def insert(self, data: any, at: int = None) -> None:
         """Insert element(s) at the beginning of a LinkedList
-        
+
         Supported Datatypes: int, float, bool, str, list, tuple, set"""
         # If index is provided
         if at:
@@ -24,12 +22,12 @@ class LinkedList:
 
             if index < 0 or index >= len(self):
                 raise IndexError("LinkedList index out of range")
-            
+
             elif index == 0:
                 node = Node(data, self.head)
                 self.head = node
                 return
-            
+
             else:
                 count = 0
 
@@ -65,8 +63,12 @@ class LinkedList:
             cursor = cursor.next
         cursor.next = Node(data)
 
-    def pop(self, index: int) -> None:
-        """Removes the Node at the specified position"""
+    def pop(self, index: int = None) -> None:
+        """Removes the Node at the specified position.
+        
+        If no index is specified, it removes the last Node from the LinkedList.
+        """
+        # If index is out of range
         if index < 0 or index >= len(self):
             raise IndexError("LinkedList index out of range")
 
@@ -84,14 +86,16 @@ class LinkedList:
             count += 1
 
     def remove(self, value: any) -> None:
-        """Removes the first Node with the specified value"""
+        """Removes the first Node from the list whose value is equal to 'value'.
+        
+        Raises ValueError if the value is not present or the LinkedList is empty."""
         if not len(self):
             raise ValueError("cannot remove from an empty LinkedList")
-        
+
         if len(self) == 1 and self.head.data == value:
             self.head = None
             return
-        
+
         if len(self) > 1:
             index = 0
             cursor = self.head
@@ -103,19 +107,19 @@ class LinkedList:
 
                 # If value is found
                 if cursor.next.data == value:
-                    
+
                     # If value is at the end
                     if index == len(self) - 1:
                         self.pop(index)
                         return
-                    
+
                     # If value is somewhere in between
                     cursor.next = cursor.next.next
                     return
-                
+
                 cursor = cursor.next
                 index += 1
-            
+
             # If value not found
             raise ValueError("value not found in the LinkedList")
 
@@ -155,7 +159,8 @@ class LinkedList:
 if __name__ == "__main__":
     llist = LinkedList()
     print(llist)
-    name = ['A','B','D','U','L','L','A','H']
+    name = ['A', 'B', 'D', 'U', 'L', 'L', 'A', 'H']
+    name.remove
     llist.insert(name[::-1])
     print(llist)
     for letter in name:
