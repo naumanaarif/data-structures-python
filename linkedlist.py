@@ -122,12 +122,18 @@ class LinkedList:
         # If value not found in the LinkedList
         raise ValueError("value not found in the LinkedList")
 
+    def clear(self) -> None:
+        """Removes all the elements from a LinkedList"""
+        if not self.head:
+            return
+
+        self.head = None
+
     def __setitem__(self, index, value):
         if index < 0 or index >= len(self):
             raise IndexError("index out of range")
 
         self.insert(value, at=index)
-        ...
 
     def __getitem__(self, index):
         if index < 0 or index >= len(self):
@@ -156,7 +162,7 @@ class LinkedList:
         return len + 1
 
     def __str__(self) -> None:
-        """Print a LinkedList object."""
+        """Prints a LinkedList object."""
         if not self.head:
             return "[ > ]"
 
@@ -165,7 +171,7 @@ class LinkedList:
         while cursor:
             ll_str += str(cursor.data) + " > "
             cursor = cursor.next
-        return ll_str + "]"
+        return ll_str.rstrip("> ") + " ]"
 
     def __iter__(self):
         return self
@@ -204,21 +210,7 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    N = 1_000_000
-    llist1 = LinkedList.convert([1, 3, 5])
-    llist2 = LinkedList.convert([2, 4, 6])
-
-    # print(f"Inserting {N} nodes...")
-    # ti = datetime.now().second
-    # for i in range(N):
-    #     llist.insert(i)
-    # tf = datetime.now().second
-    # time = tf - ti
-    # print("Done!")
-    # print(f"Time Taken: {time} second(s).\n")
-
-    llist = LinkedList()
-    # print(llist1, "+", llist2)
-    # print(llist)
-    # print(llist[0])
-    print(llist[0])
+    llist = LinkedList.convert([1, 2, 3, 4, 5])
+    print(llist)
+    llist.clear()
+    print(llist)
