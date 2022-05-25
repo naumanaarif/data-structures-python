@@ -20,6 +20,7 @@ class LinkedList:
         """Insert element(s) at the beginning of a LinkedList
 
         Supported Datatypes: int, float, bool, str, list, tuple, set"""
+        
         # If index is provided
         if at:
             index = at
@@ -42,12 +43,12 @@ class LinkedList:
                 count += 1
             return
 
-        # If data is iterable
-        if type(data) in [list, tuple, set]:
-            for item in data:
-                node = Node(item, self.head)
-                self.head = node
-            return
+        # # If data is iterable
+        # if type(data) in [list, tuple, set]:
+        #     for item in data:
+        #         node = Node(item, self.head)
+        #         self.head = node
+        #     return
 
         # If data is not iterable
         node = Node(data, self.head)
