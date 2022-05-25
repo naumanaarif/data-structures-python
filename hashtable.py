@@ -40,12 +40,11 @@ class HashTable():
 
 
 if __name__ == '__main__':
-    table = HashTable(10)
+    table = HashTable(20)
 
-    table["march 1"] = 1
-    table["march 2"] = 2
-    table["march 3"] = 3
+    for i in range(20):
+        key = f"key{i}"
+        table[key] = i
 
-    print(table["march 1"])
-    print(table["march 2"])
-    print(table["march 3"])
+    for row in table.llist:
+        print(row)
