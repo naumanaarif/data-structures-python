@@ -2,7 +2,8 @@ from linkedlist import LinkedList
 
 
 class HashTable():
-    """Implements a Hash Table data structure"""
+    """A Hash Table data structure that uses
+    separate chaining method to prevent collision"""
 
     def __init__(self, max=100) -> None:
         self.MAX = max
@@ -15,22 +16,36 @@ class HashTable():
         return h % self.MAX
 
     def __getitem__(self, key: int | str):
-        ...
+        i = self.hash(key)
 
-    def __setitem__(self, key: int | str, value):
-        ...
+        for item in self.llist[i]:
+            if item[0] == key:
+                return item[1]
+
+    def __setitem__(self, key: int | str, value) -> None:
+        i = self.hash(key)
+        found = False
+
+        for idx, item in enumerate(self.llist[i]):
+            # If key already exists in the table
+            if item[0] == key:
+                # Update the value
+                self.llist[i].insert((key, value), at=idx)
+                self.llist[i].remove(self.llist[i][idx+1])
+                found = True
+                break
+
+        if not found:
+            self.llist[i].insert((key, value))
 
 
 if __name__ == '__main__':
     table = HashTable(10)
 
-    table.add("AbuBakr", 123)
-    table.add("Umar", 124)
-    table.add("Umar", 127)
-    table.add("Uthman", 125)
-    table.add("Ali", 126)
+    table["march 1"] = 1
+    table["march 2"] = 2
+    table["march 3"] = 3
 
-    for row in table.llist:
-        print(row)
-
-    print(table)
+    print(table["march 1"])
+    print(table["march 2"])
+    print(table["march 3"])
