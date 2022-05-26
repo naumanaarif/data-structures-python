@@ -9,20 +9,21 @@ class HashTable():
         self.MAX = max
         self.llist = [LinkedList() for _ in range(self.MAX)]
 
-    def hash(self, key: str):
+    def hash(self, key: str) -> int:
+        """Returns a hashed value for a given key"""
         h = i = 0
         for char in key:
             h += ord(char) * i
             i += 1
         return h % self.MAX
 
-    def keys(self):
-        """Returns all the keys from the HashTable"""
+    def keys(self) -> list:
+        """Returns a list containing all the keys in the HashTable"""
         keys = [item[0] for llist in self.llist for item in llist]
         return keys
 
-    def values(self):
-        """Returns all the values from the HashTable"""
+    def values(self) -> list:
+        """Returns a list containing all the values in the HashTable"""
         values = [item[1] for llist in self.llist for item in llist]
         return values
 
@@ -62,18 +63,8 @@ class HashTable():
 if __name__ == '__main__':
     table = HashTable(20)
 
-    # print(table)
-    print("---------------------------------------------------------------------------------------------------------------")
-
     for i in range(100):
         key = f"key{i}"
         table[key] = i
 
-    print(table)
-    
-    print("---------------------------------------------------------------------------------------------------------------")
-    for key in table.keys():
-        print(key)
-    for value in sorted(table.values()):
-        print(value)
-    print("---------------------------------------------------------------------------------------------------------------\n")
+    print(table["key99"])
