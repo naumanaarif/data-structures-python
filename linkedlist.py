@@ -1,6 +1,3 @@
-from datetime import datetime
-
-
 class Node:
     """Represents a Node of a Singly Linked List"""
 
@@ -17,9 +14,10 @@ class LinkedList:
         self.n = 0
 
     def insert(self, data: any, at: int = None) -> None:
-        """Insert element(s) at the beginning of a LinkedList
+        """Adds an element at the specified position
 
-        Supported Datatypes: int, float, bool, str, list, tuple, set"""
+        If no position is specified, the element is added at the beginning.
+        """
         
         # If index is provided
         if at:
@@ -56,6 +54,7 @@ class LinkedList:
 
     def append(self, data: any) -> None:
         """Adds an element at the end of the LinkedList"""
+
         if not self.head:
             self.head = Node(data)
             return
@@ -65,10 +64,10 @@ class LinkedList:
         cursor.next = Node(data)
 
     def pop(self, index: int = None) -> None:
-        """Removes the Node at the specified position.
+        """Removes an element at the specified position.
         
-        If no index is specified, it removes the last Node from the LinkedList.
-        """
+        If no index is specified, the last element is removed."""
+
         # If index is out of range
         if index < 0 or index >= len(self):
             raise IndexError("LinkedList index out of range")
@@ -87,14 +86,15 @@ class LinkedList:
             count += 1
 
     def remove(self, value: any) -> None:
-        """Removes the first Node from the list whose value is equal to 'value'.
+        """Removes the first item with the specified value.
         
-        Raises ValueError if the value is not present or the LinkedList is empty."""
+        Raises ValueError if the value is not found or the LinkedList is empty."""
+        
         # If LinkedList is empty
         if not len(self):
             raise ValueError("cannot remove from an empty LinkedList")
 
-        # If a single item is present in LinkedList
+        # If only one item is present in the LinkedList
         if len(self) == 1 and self.head.data == value:
             self.head = None
             return
@@ -130,13 +130,13 @@ class LinkedList:
 
         self.head = None
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: int, value: any) -> None:
         if index < 0 or index >= len(self):
             raise IndexError("index out of range")
 
         self.insert(value, at=index)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         if index < 0 or index >= len(self):
             raise IndexError("index out of range")
 
