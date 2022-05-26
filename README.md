@@ -3,7 +3,7 @@ Implementing Data Structures in Python
 
 ## Table of Contents
 * Linked Lists
-* Hash Table
+* Hash Tables
 * Stacks (in progress)
 * ...
 
