@@ -27,6 +27,11 @@ class HashTable():
         values = [item[1] for llist in self.llist for item in llist]
         return values
 
+    def items(self) -> list:
+        """Returns a list of tuples, each tuple containing a key, value pair"""
+        items = [item for llist in self.llist for item in llist]
+        return items
+
     def __getitem__(self, key: int | str):
         i = self.hash(key)
 
@@ -67,14 +72,7 @@ if __name__ == '__main__':
     table = HashTable(20)
 
     for i in range(100):
-        key = f"key{i}"
-        table[key] = i
+        # key = f"key{i}"
+        table[f"key{i}"] = i
 
-    print(str(table))
-    print()
-    
-    print(repr(table))
-    print()
-
-    print(type(table))
-    print()
+    print(table.items())
