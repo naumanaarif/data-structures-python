@@ -9,13 +9,26 @@ class HashTable():
         self.MAX = max
         self.llist = [LinkedList() for _ in range(self.MAX)]
 
-    def hash(self, key: str) -> int:
+    def hash(self, key: int | str) -> int:
         """Returns a hashed value for a given key"""
+        if type(key) != str:
+            key = str(key)
+        
         h = i = 0
         for char in key:
             h += ord(char) * i
             i += 1
         return h % self.MAX
+
+    def get(self, key: int | str) -> any:
+        """Returns the value of the specified key
+        
+        Raises KeyError if key is not found in the HashTable"""
+        key = key if type(key) == str else str(key)
+        return self[key]
+
+    def pop(self, key: str):
+        ...
 
     def keys(self) -> list:
         """Returns a list containing all the keys in the HashTable"""
@@ -32,14 +45,19 @@ class HashTable():
         items = [item for llist in self.llist for item in llist]
         return items
 
-    def __getitem__(self, key: int | str):
+    def __getitem__(self, key: int | str) -> any:
+        key = key if type(key) == str else str(key)
         i = self.hash(key)
+
+        if key not in self.keys():
+            raise KeyError("key not found in the HashTable")
 
         for item in self.llist[i]:
             if item[0] == key:
                 return item[1]
 
     def __setitem__(self, key: int | str, value) -> None:
+        key = key if type(key) == str else str(key)
         i = self.hash(key)
         found = False
 
@@ -69,10 +87,10 @@ class HashTable():
 
 
 if __name__ == '__main__':
-    table = HashTable(20)
+    table = HashTable(10)
 
-    for i in range(100):
+    for i in range(20):
         # key = f"key{i}"
         table[f"key{i}"] = i
 
-    print(table.items())
+    print(table)
