@@ -56,6 +56,9 @@ class HashTable():
             table_str += str(row) + "\n"
         return table_str.rstrip("\n")
 
+    def __repr__(self) -> str:
+        return f"HashTable({self.MAX})"
+
     def __len__(self):
         return self.MAX
 
@@ -67,4 +70,11 @@ if __name__ == '__main__':
         key = f"key{i}"
         table[key] = i
 
-    print(table["key99"])
+    print(str(table))
+    print()
+    
+    print(repr(table))
+    print()
+
+    print(type(table))
+    print()
