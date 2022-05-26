@@ -9,7 +9,7 @@ class HashTable():
         self.MAX = max
         self.llist = [LinkedList() for _ in range(self.MAX)]
 
-    def hash(self, key: int | str) -> int:
+    def hash(self, key: str | int) -> int:
         """Returns a hashed value for a given key"""
         if type(key) != str:
             key = str(key)
@@ -20,14 +20,20 @@ class HashTable():
             i += 1
         return h % self.MAX
 
-    def get(self, key: int | str) -> any:
+    def get(self, key: str | int) -> any:
         """Returns the value of the specified key
         
         Raises KeyError if key is not found in the HashTable"""
         key = key if type(key) == str else str(key)
         return self[key]
 
-    def pop(self, key: str):
+    def pop(self, key: str | int):
+        key = key if type(key) == str else str(key)
+        i = self.hash(key)
+
+        for idx, item in enumerate(self.llist[i]):
+            if item[0] == key:
+                self.llist[i].pop(idx)
         ...
 
     def keys(self) -> list:
@@ -45,7 +51,7 @@ class HashTable():
         items = [item for llist in self.llist for item in llist]
         return items
 
-    def __getitem__(self, key: int | str) -> any:
+    def __getitem__(self, key: str | int) -> any:
         key = key if type(key) == str else str(key)
         i = self.hash(key)
 
@@ -56,10 +62,9 @@ class HashTable():
             if item[0] == key:
                 return item[1]
 
-    def __setitem__(self, key: int | str, value) -> None:
+    def __setitem__(self, key: str | int, value: any) -> None:
         key = key if type(key) == str else str(key)
         i = self.hash(key)
-        found = False
 
         for idx, item in enumerate(self.llist[i]):
             # If key already exists in the table
@@ -67,11 +72,9 @@ class HashTable():
                 # Update the value
                 self.llist[i].insert((key, value), at=idx)
                 self.llist[i].remove(self.llist[i][idx+1])
-                found = True
-                break
+                return
 
-        if not found:
-            self.llist[i].insert((key, value))
+        self.llist[i].insert((key, value))
 
     def __str__(self) -> str:
         table_str = ""
@@ -90,7 +93,12 @@ if __name__ == '__main__':
     table = HashTable(10)
 
     for i in range(20):
-        # key = f"key{i}"
         table[f"key{i}"] = i
 
+    print(table)
+    print()
+
+    table.pop("key2")
+
+    print()
     print(table)
