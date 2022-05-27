@@ -45,27 +45,42 @@ linkedlist = LinkedList()
 
 The following methods can be used on LinkedList objects.
 
-| Method | Description |
-| ------ | ----------- |
-| `append()` | Adds an element at the end of the LinkedList |
-| `clear()` | Removes all the elements from a LinkedList |
-| `insert()` | Adds an element at the specified position |
-| `pop()` | Removes an element at the specified position |
-| `remove()` | Removes the first item with the specified value |
+| Method        | Description                                                |
+| ------        | -----------                                                |
+| `append()`    | Adds an element at the end of the LinkedList               |
+| `clear()`     | Removes all the elements from a LinkedList                 |
+| `insert()`    | Adds an element at the specified position                  |
+| `pop()`       | Removes an element at the specified position               |
+| `remove()`    | Removes the first item with the specified value            |
+| `convert()`   | A classmethod that converts a sequence to a `LinkedList` |
 
 ## Support for Built-in Python Functions
 
-A LinkedList object supports the following built-in Python functions.
+A `LinkedList` object supports the following built-in Python functions.
 * `print()`
-* `len()`
 * `str()`
-* `repr()`
+* `len()`
+* `iter()`
+* `next()`
 
-Moreover, each LinkedList object is **iterable** which means you can iterate over it using a `for` loop.  
+Moreover, `LinkedList` objects are **iterable** which means you can iterate over it using a `for` loop.  
 e.g.
 ```python
 for item in linkedlist:
     print(item)
+```
+
+`LinkedList` objects also support indexing using square bracket notation (just like a `list`).  
+e.g.
+```python 
+linkedlist[i] = "hello"
+print(linkedlist[i])
+```
+
+You can also add two `LinkedList` objects together using the '`+`' operator.  
+e.g.
+```python 
+result = a + b  # where 'a' and 'b' are LinkedList objects
 ```
 
 ---
@@ -73,8 +88,8 @@ for item in linkedlist:
 # Hash Tables
 
 The Hash table data structure stores elements in key-value pairs where  
-> **key** - unique integer that is used for indexing the values  
-> **value** - data that are associated with keys
+* **key** - unique integer that is used for indexing the values  
+* **value** - data that are associated with keys
 
 ## Creating a HashTable object
 
