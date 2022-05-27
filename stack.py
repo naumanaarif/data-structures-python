@@ -23,6 +23,12 @@ class Stack:
         """Returns True if the Stack is empty, else returns False"""
         return not len(self.container)
 
+    def search(self, value) -> int | None:
+        """Returns the position of the element if found, else returns None"""
+        for idx, val in enumerate(self.container):
+            if val == value:
+                return idx
+
     def size(self) -> int:
         """Returns the size (no. of items) of the Stack"""
         return len(self.container)
@@ -33,3 +39,16 @@ class Stack:
 
 if __name__ == '__main__':
     stack = Stack()
+
+    print(stack.is_empty())
+    
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    
+    print(stack.search(1))
+    print(stack.search(2))
+    print(stack.search(3))
+
+    print(stack.is_empty())
+    
