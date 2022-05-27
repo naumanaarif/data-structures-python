@@ -4,10 +4,10 @@ Implementing Data Structures in Python
 
 ## Table of Contents
 
-* Linked Lists
-* Hash Tables
-* Stacks
-* Queues (in progress)
+* [Linked Lists](https://github.com/naumanaarif/data-structures-python#linked-lists)
+* [Hash Tables](https://github.com/naumanaarif/data-structures-python#linked-lists)
+* [Stacks](https://github.com/naumanaarif/data-structures-python#linked-lists)
+* [Queues](https://github.com/naumanaarif/data-structures-python#linked-lists) (in progress)
 
 # Linked Lists
 
@@ -47,3 +47,9 @@ For example,
 
     for item in linkedlist:
     print(item)
+
+# Hash Tables
+
+# Stacks
+
+# Queues
