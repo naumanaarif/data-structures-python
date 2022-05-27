@@ -40,15 +40,7 @@ class LinkedList:
                 cursor = cursor.next
                 count += 1
             return
-
-        # # If data is iterable
-        # if type(data) in [list, tuple, set]:
-        #     for item in data:
-        #         node = Node(item, self.head)
-        #         self.head = node
-        #     return
-
-        # If data is not iterable
+        
         node = Node(data, self.head)
         self.head = node
 
