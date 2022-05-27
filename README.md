@@ -5,9 +5,9 @@ Implementing Data Structures in Python
 ## Table of Contents
 
 * [Linked Lists](https://github.com/naumanaarif/data-structures-python#linked-lists)
-* [Hash Tables](https://github.com/naumanaarif/data-structures-python#linked-lists)
-* [Stacks](https://github.com/naumanaarif/data-structures-python#linked-lists)
-* [Queues](https://github.com/naumanaarif/data-structures-python#linked-lists) (in progress)
+* [Hash Tables](https://github.com/naumanaarif/data-structures-python#hash-tables)
+* [Stacks](https://github.com/naumanaarif/data-structures-python#stacks)
+* [Queues](https://github.com/naumanaarif/data-structures-python#queues) (in progress)
 
 # Linked Lists
 
