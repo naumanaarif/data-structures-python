@@ -27,14 +27,14 @@ class HashTable():
         key = key if type(key) == str else str(key)
         return self[key]
 
-    def pop(self, key: str | int):
+    def pop(self, key: str | int) -> None:
+        """Removes the first item with the specified key"""
         key = key if type(key) == str else str(key)
         i = self.hash(key)
 
         for idx, item in enumerate(self.llist[i]):
             if item[0] == key:
                 self.llist[i].pop(idx)
-        ...
 
     def keys(self) -> list:
         """Returns a list containing all the keys in the HashTable"""
