@@ -1,13 +1,19 @@
-# Data Structures
+# Implementing Data Structures in Python
 
 Data structure is a storage that is used to store and organize data. It is a way of arranging data on a computer so that it can be accessed and updated efficiently.
 
-## Table of Contents
+**Table of Contents**
 
-* [Linked Lists](https://github.com/naumanaarif/data-structures-python#linked-lists)
-* [Hash Tables](https://github.com/naumanaarif/data-structures-python#hash-tables)
-* [Stacks](https://github.com/naumanaarif/data-structures-python#stacks)
-* [Queues](https://github.com/naumanaarif/data-structures-python#queues) (in progress)
+- [Implementing Data Structures in Python](#implementing-data-structures-in-python)
+- [Linked Lists](#linked-lists)
+  - [Implementation](#implementation)
+  - [Creating a LinkedList object](#creating-a-linkedlist-object)
+  - [LinkedList Methods](#linkedlist-methods)
+  - [Support for Built-in Python Functions](#support-for-built-in-python-functions)
+- [Hash Tables](#hash-tables)
+  - [Creating a HashTable object](#creating-a-hashtable-object)
+- [Stacks](#stacks)
+- [Queues](#queues)
 
 ---
 
@@ -36,23 +42,33 @@ class LinkedList:
 
 ## Creating a LinkedList object
 
-To create a LinkedList object, do this:
-```python
-linkedlist = LinkedList()
+To create an empty LinkedList object, do this:
+```console
+>>> linkedlist = LinkedList()
+>>> print(linkedlist)
+[ > ]
 ```
 
-## Methods
+## LinkedList Methods
 
 The following methods can be used on LinkedList objects.
 
-| Method        | Description                                                |
-| ------        | -----------                                                |
-| `append()`    | Adds an element at the end of the LinkedList               |
-| `clear()`     | Removes all the elements from a LinkedList                 |
-| `insert()`    | Adds an element at the specified position                  |
-| `pop()`       | Removes an element at the specified position               |
-| `remove()`    | Removes the first item with the specified value            |
-| `convert()`   | A classmethod that converts a sequence to a `LinkedList` |
+| Method     | Description                                     |
+| ---------- | ----------------------------------------------- |
+| `insert()` | Adds an element at the specified position       |
+| `pop()`    | Removes an element at the specified position    |
+| `append()` | Adds an element at the end of the LinkedList    |
+| `remove()` | Removes the first item with the specified value |
+| `clear()`  | Removes all the elements from a LinkedList      |
+
+The `LinkedList` class also have a **classmethod**
+* `linkedlist()` - Converts an iterable object into a `LinkedList` while preserving the order of items.  
+
+```python
+>>> a = LinkedList.linkedlist([0, 1, 2, 3])
+>>> print(a)
+[ 0 > 1 > 2 > 3 ]
+```
 
 ## Support for Built-in Python Functions
 
@@ -63,18 +79,19 @@ A `LinkedList` object supports the following built-in Python functions.
 * `iter()`
 * `next()`
 
-Moreover, `LinkedList` objects are **iterable** which means you can iterate over it using a `for` loop.  
+Therefore, `LinkedList` objects are **iterable** which means you can iterate over them using a `for` loop.  
 e.g.
 ```python
-for item in linkedlist:
-    print(item)
+>>> for item in linkedlist:
+>>>    print(item)
 ```
 
 `LinkedList` objects also support indexing using square bracket notation (just like a `list`).  
 e.g.
 ```python 
-linkedlist[i] = "hello"
-print(linkedlist[i])
+>>> linkedlist[i] = "hello"
+>>> print(linkedlist)
+[ hello ]
 ```
 
 You can also add two `LinkedList` objects together using the '`+`' operator.  
