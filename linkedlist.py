@@ -128,18 +128,28 @@ class LinkedList:
 
         self.insert(value, at=index)
 
-    def __getitem__(self, index: int):
-        if index < 0 or index >= len(self):
-            raise IndexError("index out of range")
+# TODO: Fix __getitem__ so that it can take a slice object as a parameter
+    def __getitem__(self, index: int | slice):
+        if isinstance(index, int):
+            if index >= len(self):
+                raise IndexError("index out of range")
 
-        count = 0
-        cursor = self.head
-        for _ in range(index + 1):
-            if index == count:
-                return cursor.data
+            if index < 0:
+                for idx, item in enumerate(self):
+                    if idx == len(self) + index:
+                        return item
 
-            cursor = cursor.next
-            count += 1
+            for idx, item in enumerate(self):
+                if idx == index:
+                    return item
+
+        elif isinstance(index, slice):
+            start, stop, step = index.indices(len(self))
+            sliced_llist = LinkedList.linkedlist([self[i] for i in range(start, stop, step)])
+            return sliced_llist
+
+        else:
+            raise TypeError("index must be an int or slice")
 
     def __len__(self) -> int:
         """Returns the length (number of items) of a LinkedList object"""
@@ -195,16 +205,19 @@ class LinkedList:
         return llist
 
     @classmethod
-    def convert(cls, seq: list | tuple | set):
+    def linkedlist(cls, iterable):
         """Converts a sequence (list, tuple or set) into a LinkedList"""
         llist = LinkedList()
-        for data in seq:
+
+        if not iterable:
+            return llist
+
+        for data in iterable[::-1]:
             llist.insert(data)
         return llist
 
 
 if __name__ == "__main__":
-    llist = LinkedList.convert([1, 2, 3, 4, 5])
-    print(llist)
-    llist.clear()
-    print(llist)
+    a = LinkedList.linkedlist([0, 1, 2, 3])
+    print(a)
+    print(a[::-1])
