@@ -44,9 +44,17 @@ class LinkedList:
 
 To create an empty LinkedList object, do this:
 ```python
->>> linkedlist = LinkedList()
->>> print(linkedlist)
+>>> a = LinkedList()
+>>> a
 [ > ]
+```
+
+We can also create a LinkedList from an iterable object such as list, tuple, set, etc.  
+Example
+```python
+>>> a = LinkedList.linkedlist(["hello", "world"])
+>>> a
+[ hello > world ]
 ```
 
 ## LinkedList Methods
@@ -64,6 +72,7 @@ The following methods can be used on LinkedList objects.
 The `LinkedList` class also have a **classmethod**
 * `linkedlist()` - Converts an iterable object into a `LinkedList` while preserving the order of items.  
 
+Usage:
 ```python
 >>> a = LinkedList.linkedlist([0, 1, 2, 3])
 >>> print(a)
