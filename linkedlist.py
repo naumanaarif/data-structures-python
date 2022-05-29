@@ -25,11 +25,11 @@ class LinkedList:
             if index < 0 or index >= len(self):
                 raise IndexError("LinkedList index out of range")
             elif index == 0:
-                node = Node(data, self.head)
+                node = Node(data, next=self.head)
                 self.head = node
                 return
-            count = 0
 
+            count = 0
             cursor = self.head
             while cursor:
                 if count == index - 1:
@@ -131,7 +131,6 @@ class LinkedList:
 
         self.insert(value, at=index)
 
-# TODO: Fix __getitem__ so that it can take a slice object as a parameter
     def __getitem__(self, index: int | slice):
         if isinstance(index, int):
             if index >= len(self):
