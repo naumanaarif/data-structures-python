@@ -19,7 +19,7 @@ class LinkedList:
         If no position is specified, the element is added at the beginning.
         """
         
-        # If index is provided
+        # Insert at the given position
         if at:
             index = at
             if index < 0 or index >= len(self):
@@ -41,6 +41,7 @@ class LinkedList:
                 count += 1
             return
         
+        # Insert at the beginning
         node = Node(data, self.head)
         self.head = node
 
@@ -123,8 +124,10 @@ class LinkedList:
         self.head = None
 
     def __setitem__(self, index: int, value: any) -> None:
+        index = index if index > 0 else len(self) + index
+
         if index < 0 or index >= len(self):
-            raise IndexError("index out of range")
+            raise IndexError("linked list assignment index out of range")
 
         self.insert(value, at=index)
 
@@ -205,9 +208,11 @@ class LinkedList:
         return llist
 
     @classmethod
-    def linkedlist(cls, iterable):
-        """Converts a sequence (list, tuple or set) into a LinkedList"""
-        llist = LinkedList()
+    def linkedlist(cls, iterable=None):
+        """Creates a LinkedList from an iterable object. e.g. `LinkedList.linkedlist([1, 2, 3])`
+        
+        Returns an empty LinkedList if no argument is passed."""
+        llist = cls()
 
         if not iterable:
             return llist
@@ -218,6 +223,5 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    a = LinkedList.linkedlist([0, 1, 2, 3])
-    print(a)
-    print(a[::-1])
+    a = LinkedList.linkedlist([1, 2, 3])
+    print(a.linkedlist())
