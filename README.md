@@ -43,7 +43,7 @@ class LinkedList:
 ## Creating a LinkedList object
 
 To create an empty LinkedList object, do this:
-```console
+```python
 >>> linkedlist = LinkedList()
 >>> print(linkedlist)
 [ > ]
