@@ -56,6 +56,11 @@ class LinkedList:
             cursor = cursor.next
         cursor.next = Node(data)
 
+    def extend(self, seq: list | tuple | set) -> None:
+        """Appends all elements of a sequence to a LinkedList"""
+        for item in seq:
+            self.append(item)
+
     def pop(self, index: int = None) -> None:
         """Removes an element at the specified position.
         
@@ -122,6 +127,7 @@ class LinkedList:
             return
 
         self.head = None
+        return self
 
     def __setitem__(self, index: int, value: any) -> None:
         index = index if index > 0 else len(self) + index
@@ -167,7 +173,7 @@ class LinkedList:
         return len + 1
 
     def __str__(self) -> None:
-        """Prints a LinkedList object."""
+        """Represents a LinkedList object as a string."""
         if not self.head:
             return "[ > ]"
 
@@ -213,14 +219,14 @@ class LinkedList:
         Returns an empty LinkedList if no argument is passed."""
         llist = cls()
 
-        if not iterable:
-            return llist
+        if iterable:
+            for data in iterable[::-1]:
+                llist.insert(data)
 
-        for data in iterable[::-1]:
-            llist.insert(data)
         return llist
 
 
 if __name__ == "__main__":
-    a = LinkedList.linkedlist([1, 2, 3])
-    print(a.linkedlist())
+    a = LinkedList.linkedlist([1,2,3])
+    print(a)
+
