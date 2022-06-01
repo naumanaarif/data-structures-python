@@ -52,22 +52,23 @@ To create an empty LinkedList object, do this:
 We can also create a LinkedList from an iterable object such as list, tuple, set, etc.  
 Example
 ```python
->>> a = LinkedList.linkedlist(["hello", "world"])
+>>> a = LinkedList.linkedlist(["h", "e", "l", "l", "o"])
 >>> a
-[ hello > world ]
+[ h > e > l > l > o ]
 ```
 
 ## LinkedList Methods
 
 The following methods can be used on LinkedList objects.
 
-| Method     | Description                                     |
-| ---------- | ----------------------------------------------- |
-| `insert()` | Adds an element at the specified position       |
-| `pop()`    | Removes an element at the specified position    |
-| `append()` | Adds an element at the end of the LinkedList    |
-| `remove()` | Removes the first item with the specified value |
-| `clear()`  | Removes all the elements from a LinkedList      |
+| Method     | Description                                              |
+| ---------- | -------------------------------------------------------- |
+| `insert()` | Adds an element at the specified position                |
+| `pop()`    | Removes an element at the specified position             |
+| `append()` | Adds an element at the end of the LinkedList             |
+| `remove()` | Removes the first item with the specified value          |
+| `clear()`  | Removes all the elements from a LinkedList               |
+| `extend()` | Appends all the elements of a sequence to the LinkedList |
 
 The `LinkedList` class also have a **classmethod**
 * `linkedlist()` - Converts an iterable object into a `LinkedList` while preserving the order of items.  
@@ -75,7 +76,7 @@ The `LinkedList` class also have a **classmethod**
 Usage:
 ```python
 >>> a = LinkedList.linkedlist([0, 1, 2, 3])
->>> print(a)
+>>> a
 [ 0 > 1 > 2 > 3 ]
 ```
 
