@@ -1,2 +1,4 @@
-test_linkedlist.py
 __pycache__/
+test_linkedlist.py
+tree.py
+tree_exercise.py
