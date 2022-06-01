@@ -60,21 +60,13 @@ class BSTNode:
         if not self.left:
             return self.data
 
-        cursor = self.left
-        while cursor:
-            if not cursor.left:
-                return cursor.data
-            cursor = cursor.left
+        return self.left.min()
 
     def max(self):
         if not self.right:
             return self.data
 
-        cursor = self.right
-        while cursor:
-            if not cursor.right:
-                return cursor.data
-            cursor = cursor.right
+        return self.right.max()
 
     def total(self) -> int:
         return sum(self.inorder_traversal())
