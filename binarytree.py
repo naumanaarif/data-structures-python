@@ -7,24 +7,48 @@ class BSTNode:
         self.left = None
         self.right = None
     
-    def add_child(self, data) -> None:
+    def add(self, value) -> None:
         # If already exists
-        if data == self.data:
+        if value == self.data:
             return
         
         # Add to the left
-        if data < self.data:
+        if value < self.data:
             if self.left:
-                self.left.add_child(data)
+                self.left.add(value)
             else:
-                self.left = BSTNode(data)
+                self.left = BSTNode(value)
         # Add to the right
-        if data > self.data:
+        if value > self.data:
             if self.right:
-                self.right.add_child(data)
+                self.right.add(value)
             else:
-                self.right = BSTNode(data)
+                self.right = BSTNode(value)
     
+    def remove(self, value):
+
+        if value < self.data:
+            if self.left:
+                self.left.remove(value)
+        
+        elif value > self.data:
+            if self.right:
+                self.right.remove(value)
+
+        else:
+            if not self.left and not self.right:
+                return
+            if not self.left:
+                return self.right
+            if not self.right:
+                return self.left
+
+            min_value = self.right.min()
+            self.data = min_value
+            self.right = self.right.remove(min_value)
+        
+        return self
+
     def inorder_traversal(self) -> list:
         elements = []
 
@@ -78,18 +102,17 @@ def build_tree(seq):
     root = BSTNode(seq[0])
 
     for element in seq[1:]:
-        root.add_child(element)
+        root.add(element)
 
     return root
 
 
 if __name__ == '__main__':
-    numbers = [random.randint(1, 5) for _ in range(5)]
-    print(numbers)
+    numbers = [17, 4, 1, 20, 9, 23, 18, 34]
+    
     tree = build_tree(numbers)
-    # inorder_result = tree.inorder_traversal()
     print(tree.inorder_traversal())
-    # print(tree.search(7))
-    print("MIN:", tree.min())
-    print("MAX:", tree.max())
-    print("SUM:", tree.total())
+
+    tree.remove(20)
+    print(tree.inorder_traversal())
+
