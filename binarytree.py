@@ -8,6 +8,7 @@ class BSTNode:
         self.right = None
     
     def add(self, value) -> None:
+        """Adds an element in a Binary Tree"""
         # If already exists
         if value == self.data:
             return
@@ -26,7 +27,7 @@ class BSTNode:
                 self.right = BSTNode(value)
     
     def remove(self, value):
-
+        """Removes first element with the value from the Binary Tree"""
         if value < self.data:
             if self.left:
                 self.left.remove(value)
@@ -50,6 +51,7 @@ class BSTNode:
         return self
 
     def inorder_traversal(self) -> list:
+        """Returns a sorted list of elements from Binary Tree"""
         elements = []
 
         # Traverse left
@@ -64,6 +66,9 @@ class BSTNode:
         return elements
 
     def search(self, data):
+        """Search the value in a Binary Tree
+
+        If found, returns True, else returns False"""
         if data == self.data:
             return True
 
@@ -81,18 +86,21 @@ class BSTNode:
                 return False
     
     def min(self):
+        """Returns the lowest value from a Binary Tree"""
         if not self.left:
             return self.data
 
         return self.left.min()
 
     def max(self):
+        """Returns the highest value from a Binary Tree"""
         if not self.right:
             return self.data
 
         return self.right.max()
 
     def total(self) -> int:
+        """Returns the sum of all the values in a Binary Tree"""
         return sum(self.inorder_traversal())
 
     ...
