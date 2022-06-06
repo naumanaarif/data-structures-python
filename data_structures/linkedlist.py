@@ -61,27 +61,46 @@ class LinkedList:
         for item in seq:
             self.append(item)
 
-    def pop(self, index: int = None) -> None:
+    def pop(self, index: int = None) -> any:
         """Removes an element at the specified position.
         
         If no index is specified, the last element is removed."""
 
-        # If index is out of range
-        if index < 0 or index >= len(self):
-            raise IndexError("LinkedList index out of range")
-
-        if index == 0:
-            self.head = self.head.next
+        if not self.head:
             return
 
-        count = 0
+        if index:
+            # If index is out of range
+            if index < 0 or index >= len(self):
+                raise IndexError("LinkedList index out of range")
+
+            if index == 0:
+                self.head = self.head.next
+                return
+
+            count = 0
+            cursor = self.head
+            while cursor:
+                if count == index - 1:
+                    data = cursor.next.data
+                    cursor.next = cursor.next.next
+                    return data
+                cursor = cursor.next
+                count += 1
+
+        # Remove the last element
+        if not self.head.next:
+            data = self.head.data
+            self.head = None
+            return data
+
         cursor = self.head
-        while cursor:
-            if count == index - 1:
-                cursor.next = cursor.next.next
-                break
+        while cursor.next:
+            if not cursor.next.next:
+                data = cursor.next.data
+                cursor.next = None
+                return data
             cursor = cursor.next
-            count += 1
 
     def remove(self, value: any) -> None:
         """Removes the first item with the specified value.
@@ -138,24 +157,21 @@ class LinkedList:
         self.insert(value, at=index)
 
     def __getitem__(self, index: int | slice):
+        # Get value at the index
         if isinstance(index, int):
+            index = index if index >= 0 else len(self) + index
+
             if index >= len(self):
                 raise IndexError("index out of range")
-
-            if index < 0:
-                for idx, item in enumerate(self):
-                    if idx == len(self) + index:
-                        return item
 
             for idx, item in enumerate(self):
                 if idx == index:
                     return item
-
+        # Get a slice
         elif isinstance(index, slice):
             start, stop, step = index.indices(len(self))
             sliced_llist = LinkedList.linkedlist([self[i] for i in range(start, stop, step)])
             return sliced_llist
-
         else:
             raise TypeError("index must be an int or slice")
 
@@ -229,4 +245,5 @@ class LinkedList:
 if __name__ == "__main__":
     a = LinkedList.linkedlist([1,2,3])
     print(a)
-
+    print(a[0], a[1], a[2])
+    print(a[-1], a[-2], a[-3])
