@@ -1,4 +1,4 @@
-# Implementing Data Structures & Algorithms in Python
+# Implementing Data Structures & Algorithms using Python
 
 **Table of Contents**
 
